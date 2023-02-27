@@ -8,6 +8,31 @@ var projectTypeInputEl = $('#project-type-input');
 var projectDateInputEl = $('#project-date-input');
 var returnDateInputEl = $('#return-date-input');
 
+
+//adding for now
+// Access toggle switch HTML element
+var themeSwitcher = document.querySelector("#theme-switcher");
+var container = document.querySelector(".container-fluid");
+
+// Set default mode to dark
+var mode = "dark";
+
+// Listen for a click event on toggle switch
+themeSwitcher.addEventListener("click", function() {
+  // If mode is dark, apply light background
+  console.log(mode)
+  if (mode === "dark") {
+    mode = "light";
+    container.setAttribute("class", "light");
+  }
+  // If mode is light, apply dark background 
+  else {
+    mode = "dark";
+    container.setAttribute("class", "dark");
+  }
+});
+//adding for now
+
 // handle displaying the time
 function displayTime() {
   var rightNow = dayjs().format('MMM DD, YYYY');
@@ -120,6 +145,39 @@ function handleProjectFormSubmit(event) {
 }
 
 projectFormEl.on('submit', handleProjectFormSubmit);
+
+//adding for now table sort
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  //adding value to var table by ID.
+  table = document.getElementById("myTable");
+  switching = true;
+  //swiches on during looping, off when not looping.
+  while (switching) {
+    // Start by off first but checking all rows.
+    switching = false;
+    rows = table.rows;
+    //loop through all table rows except first row.
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      //sort the list by comparing alphabet of current row and next.
+      x = rows[i].getElementsByTagName("td")[0];
+      y = rows[i + 1].getElementsByTagName("td")[0];
+      // sort the current row and next row if needed.
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        // If done, change the switch now done for the function.
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      //check each row if its marked sorting or not.
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
 
 // Use jQuery event delegation to listen for clicks on dynamically added delete
 // buttons.
