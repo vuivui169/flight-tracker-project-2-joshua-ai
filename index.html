@@ -26,6 +26,20 @@
       </h2>
     </header>
     <main class="container-fluid">
+      <!-- adding for now -->
+      <div class="row toggle">
+        <div class="col">
+          <p>DARK MODE</p>
+        </div>
+        <label class="switch col">
+          <input type="checkbox" id="theme-switcher">
+          <span class="slider round"></span>
+        </label>
+        <div class="col">
+          <p>LIGHT MODE</p>
+        </div>
+      </div>
+      <!-- adding for now -->
       <div class="row">
         <div class="col-md col-xl-4">
           <!-- Add project form and instructions -->
@@ -56,7 +70,9 @@
 
         <div class="col-md col-xl-8">
           <!-- Project Table -->
-          <table class="table table-custom">
+          <table class="table table-custom" id ="myTable">
+            <p>Click the button to sort the table alphabetically, by name:</p>
+            <p><button onclick="sortTable()">Sort</button></p>
             <thead>
               <tr>
                 <th>Departure Airport</th>
